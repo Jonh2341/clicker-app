@@ -4,7 +4,12 @@ module.exports = {
     "./public/index.html" // Також аналізуватиме цей конкретний файл
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'grey-app': '#343434',
+        'light-grey-app': '#444444'
+      },
+    },
   },
   plugins: [],
 }
