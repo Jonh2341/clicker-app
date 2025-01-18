@@ -2,7 +2,7 @@ import "./App.css";
 
 function Header() {
   return (
-    <header className="header flex items-center place-content-center h-[125px] bg-light-grey-app">
+    <header className="header flex items-center place-content-center h-[125px] bg-light-grey-app mb-[25px]">
       <div className="box-header flex flex-col justify-center w-[166px] h-[58px] text-white">
         <h1 className="
         title 
