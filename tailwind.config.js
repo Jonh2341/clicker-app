@@ -7,7 +7,8 @@ module.exports = {
     extend: {
       colors: {
         'grey-app': '#343434',
-        'light-grey-app': '#444444'
+        'light-grey-app': '#444444',
+        'btn-grey-app': '#D9D9D9'
       },
     },
   },

@@ -1,7 +1,8 @@
 import "./App.css";
 import { useState } from "react";
+import $ from "jquery";
 
-const levelFive = 7;
+const levelFive = 5;
 const levelTen = 10;
 const moreTen = 15;
 
@@ -15,7 +16,18 @@ function StatsBlock() {
     const counterUp = function () {
         setCounter(counter + 1);
         setClick(click + 1);
+        let btnAnim = $('.container-push');
 
+        const animUp = function () {
+            btnAnim.css({
+                'background-color': 'grey'
+            });
+            setTimeout(() => {
+                btnAnim.css({
+                    'background-color': ''
+                });
+            }, 100); // Change back to original color after 5 seconds
+        }
 
         if (level <= 5) {
             if (counter === levelFive) {
@@ -43,10 +55,12 @@ function StatsBlock() {
             newAchive.push(`+${click}clicks`)
             setAchive(newAchive);
         }
+
+        animUp()
     }
 
     return (
-        <div className="container-stats w-full pl-[23px] flex flex-col text-white">
+        <div className="container-stats w-full pl-[23px] flex flex-col text-white mb-[50px]">
             <div className="stats-block mb-[10px]">
                 <span>lvl: {level}</span>
             </div>
@@ -56,8 +70,10 @@ function StatsBlock() {
             <div className="stats-block flex">
                 <span>Achivements: {achive.join(", ")}</span>
             </div>
-            <div className="container-push h-20 w-20 bg-white flex" onClick={counterUp}></div>
-            <div className="countainer-counter justify-center">
+            <div className="container-push h-[302px] w-[310px] transition duration-500 ease-in-ou transform hover:scale-110 bg-btn-grey-app rounded-full flex mx-auto mt-[48px] mb-[26px] justify-center items-center" onClick={counterUp}>
+                <img src="/icon.png" className="w-[80%] h-[80%] object-contain" alt="icon"/>
+            </div>
+            <div className="countainer-counter justify-center mx-auto">
                 {counter}
             </div>
         </div>

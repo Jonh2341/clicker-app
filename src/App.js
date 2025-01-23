@@ -1,13 +1,15 @@
 import "./App.css";
 import Header from "./Header";
 import StatsBlock from "./StatsBlock";
+import FooterContainer from "./FooterContainer";
 
 function App() {
   return (
     <>
-      <div className="w-100 h-screen bg-grey-app">
-        <Header/>
-        <StatsBlock/>
+      <div className="w-full bg-grey-app">
+        <Header />
+        <StatsBlock />
+        <FooterContainer />
       </div>
     </>
   );
