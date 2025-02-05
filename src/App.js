@@ -6,7 +6,7 @@ import FooterContainer from "./FooterContainer";
 function App() {
   return (
     <>
-      <div className="w-full bg-grey-app">
+      <div className="w-full h-lvh bg-grey-app">
         <Header />
         <StatsBlock />
         <FooterContainer />

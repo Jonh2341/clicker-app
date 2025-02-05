@@ -60,7 +60,7 @@ function StatsBlock() {
     }
 
     return (
-        <div className="container-stats w-full pl-[23px] flex flex-col text-white mb-[50px]">
+        <div className="container-stats w-full pl-[23px] flex flex-col text-white mb-[80px]">
             <div className="stats-block mb-[10px]">
                 <span>lvl: {level}</span>
             </div>
