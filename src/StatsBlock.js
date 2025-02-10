@@ -6,59 +6,7 @@ const levelFive = 5;
 const levelTen = 10;
 const moreTen = 15;
 
-function StatsBlock() {
-
-    const [ level, setLevel ] = useState(1); 
-    const [ counter, setCounter ] = useState(1);
-    const [ achive, setAchive ] = useState([]);
-    const [ click, setClick ] = useState(1);
-
-    const counterUp = function () {
-        setCounter(counter + 1);
-        setClick(click + 1);
-        let btnAnim = $('.container-push');
-
-        const animUp = function () {
-            btnAnim.css({
-                'background-color': 'grey'
-            });
-            setTimeout(() => {
-                btnAnim.css({
-                    'background-color': ''
-                });
-            }, 100); // Change back to original color after 5 seconds
-        }
-
-        if (level <= 5) {
-            if (counter === levelFive) {
-                setLevel(level + 1);
-                setCounter(0);
-            }
-        } else if (level > 5 && level <= 10) {
-            if (counter === levelTen) {
-                setLevel(level + 1);
-                setCounter(0);
-            }
-        } else if (level > 10) {
-            if (counter === moreTen) {
-                setLevel(level + 1);
-                setCounter(0);
-            }
-        }
-
-        if ((click % 25) == 0) {
-            let newAchive = [];
-            for (let i = 0; i < achive.length; i++) {
-                newAchive.push(achive[i]);
-                // console.log(i, achive[i]);
-            }
-            newAchive.push(`+${click}clicks`)
-            setAchive(newAchive);
-        }
-
-        animUp()
-    }
-
+function StatsBlock({ level, click, achive, counter, counterUp }) {
     return (
         <div className="container-stats w-full pl-[23px] flex flex-col text-white mb-[80px]">
             <div className="stats-block mb-[10px]">
