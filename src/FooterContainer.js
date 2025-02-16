@@ -2,11 +2,12 @@ import "./App.css";
 import { useState } from "react";
 import $ from "jquery";
 
-function FooterContainer({ counterUp, click, counter, level, achive }) {
+function FooterContainer({ counterUp, click, counter, level, achive, setChange }) {
     const [isContain, contain] = useState(false);
 
     const doublePoints = function() {
         alert('double!')
+        setChange(2)
     }
 
     const toggleShop = (isOpen) => {

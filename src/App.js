@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./App.css";
 import $ from 'jquery';
 import Header from "./Header";
@@ -9,15 +9,46 @@ const levelFive = 5;
 const levelTen = 10;
 const moreTen = 15;
 
+const setLevelStorage = (value) => {
+  localStorage.setItem('level', value);
+}
+
+const getLevelStorage = () => {
+  return Number(localStorage.getItem('level'));
+}
+
+const setClickStorage = (value) => {
+  localStorage.setItem('click', value);
+}
+
+const getClickStorage = () => {
+  return Number(localStorage.getItem('click'));
+}
+
+const setAchiveStorage = (value) => {
+  localStorage.setItem('achive', value);
+}
+
+const getAchiveStorage = () => {
+  return localStorage.getItem('achive')?.split(',');
+}
+
 function App() {
-  const [level, setLevel] = useState(1); 
+  const [level, setLevel] = useState(getLevelStorage || 1); 
   const [counter, setCounter] = useState(1);
-  const [achive, setAchive] = useState([]);
-  const [click, setClick] = useState(1);
+  const [achive, setAchive] = useState(getAchiveStorage || []);
+  const [click, setClick] = useState(getClickStorage || 0);
+  const [clickChange, setChange] = useState(1)
+
+  useEffect(() => {
+    setLevelStorage(level);
+  }, [level]);
 
   let counterUp = () => {
-    setCounter(counter + 1);
-    setClick(click + 1);
+    setCounter(counter + clickChange);
+    setClick(click + clickChange);
+    setClickStorage(click + clickChange);
+
     let btnAnim = $('.container-push');
 
     const animUp = () => {
@@ -31,18 +62,18 @@ function App() {
       }, 100); // Change back to original color after 5 seconds
     }
 
-    if (level <= 5) {
-      if (counter === levelFive) {
+    if (level >= 0 && level <= 5) {
+      if (counter >= levelFive) {
         setLevel(level + 1);
         setCounter(0);
       }
     } else if (level > 5 && level <= 10) {
-      if (counter === levelTen) {
+      if (counter >= levelTen) {
         setLevel(level + 1);
         setCounter(0);
       }
     } else if (level > 10) {
-      if (counter === moreTen) {
+      if (counter >= moreTen) {
         setLevel(level + 1);
         setCounter(0);
       }
@@ -52,6 +83,7 @@ function App() {
       let newAchive = [...achive];
       newAchive.push(`+${click} clicks`);
       setAchive(newAchive);
+      setAchiveStorage(newAchive)
     }
 
     animUp();
@@ -66,6 +98,7 @@ function App() {
         achive={achive} setAchive={setAchive}
         click={click} setClick={setClick}
         counterUp={counterUp}
+        clickChange={clickChange}
       />
       <FooterContainer
         level={level} setLevel={setLevel}
@@ -73,6 +106,7 @@ function App() {
         achive={achive} setAchive={setAchive}
         click={click} setClick={setClick}
         counterUp={counterUp}
+        setChange={setChange}
       />
     </div>
   );
