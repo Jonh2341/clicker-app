@@ -33,12 +33,20 @@ const getAchiveStorage = () => {
   return localStorage.getItem('achive')?.split(',');
 }
 
+const setExpStorage = (value) => {
+  localStorage.setItem('exp', value);
+}
+
+const getExpStorage = () => {
+  return Number(localStorage.getItem('exp'));
+}
+
 function App() {
   const [level, setLevel] = useState(getLevelStorage || 1); 
   const [counter, setCounter] = useState(1);
   const [achive, setAchive] = useState(getAchiveStorage || []);
   const [click, setClick] = useState(getClickStorage || 0);
-  const [clickChange, setChange] = useState(1)
+  const [clickChange, setChange] = useState(getExpStorage || 1);
 
   useEffect(() => {
     setLevelStorage(level);
@@ -48,6 +56,7 @@ function App() {
     setCounter(counter + clickChange);
     setClick(click + clickChange);
     setClickStorage(click + clickChange);
+    setExpStorage(clickChange);
 
     let btnAnim = $('.container-push');
 

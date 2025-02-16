@@ -6,7 +6,6 @@ function FooterContainer({ counterUp, click, counter, level, achive, setChange }
     const [isContain, contain] = useState(false);
 
     const doublePoints = function() {
-        alert('double!')
         setChange(2)
     }
 
