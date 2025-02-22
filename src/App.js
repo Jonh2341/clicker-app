@@ -9,6 +9,14 @@ const levelFive = 5;
 const levelTen = 10;
 const moreTen = 15;
 
+const setRebithStorage = (value) => {
+  localStorage.setItem('rebith', value);
+}
+
+const getRebithStorage = () => {
+  return Number(localStorage.getItem('rebith'));
+}
+
 const setLevelStorage = (value) => {
   localStorage.setItem('level', value);
 }
@@ -47,10 +55,30 @@ function App() {
   const [achive, setAchive] = useState(getAchiveStorage || []);
   const [click, setClick] = useState(getClickStorage || 0);
   const [clickChange, setChange] = useState(getExpStorage || 1);
+  const [rebith, setRebith] = useState(false);
+  const [rebithCounter, setRebithCounter] = useState(getRebithStorage || 0);
 
   useEffect(() => {
     setLevelStorage(level);
   }, [level]);
+
+  useEffect(() => {
+    setRebithStorage(rebithCounter);
+  }, [rebithCounter]);
+
+  if (rebith) {
+    localStorage.removeItem('level');
+    localStorage.removeItem('click');
+    localStorage.removeItem('achive');
+    localStorage.removeItem('exp'); 
+    setCounter(0);
+    setClick(0);
+    setLevel(1);
+    setAchive([]);
+    setChange(1);
+    setRebith(false);
+    setRebithCounter(rebithCounter + 1);
+  }
 
   let counterUp = () => {
     setCounter(counter + clickChange);
@@ -108,6 +136,7 @@ function App() {
         click={click} setClick={setClick}
         counterUp={counterUp}
         clickChange={clickChange}
+        rebith={rebithCounter}
       />
       <FooterContainer
         level={level} setLevel={setLevel}
@@ -116,6 +145,7 @@ function App() {
         click={click} setClick={setClick}
         counterUp={counterUp}
         setChange={setChange}
+        setRebith={setRebith}
       />
     </div>
   );

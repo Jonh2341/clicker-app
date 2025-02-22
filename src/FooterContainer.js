@@ -2,11 +2,16 @@ import "./App.css";
 import { useState } from "react";
 import $ from "jquery";
 
-function FooterContainer({ counterUp, click, counter, level, achive, setChange }) {
+function FooterContainer({ counterUp, click, counter, level, achive, setChange, setRebith}) {
     const [isContain, contain] = useState(false);
 
     const doublePoints = function() {
         setChange(2)
+    }
+
+    const rebithAll = function() {
+        setRebith(true);
+
     }
 
     const toggleShop = (isOpen) => {
@@ -49,6 +54,7 @@ function FooterContainer({ counterUp, click, counter, level, achive, setChange }
         <div className="footerContainer relative w-full h-[210px] flex pb-[15px] bg-grey-app text-white items-end justify-items-center text-center">
             <span className="shop left-[50%] border-b absolute border-white cursor-pointer" onClick={handleClickShop}>shop</span>
             <button type="button" className="btn-double bg-grey-app self-center mx-auto hidden" onClick={doublePoints}>double</button>
+            <button type="button" className="btn-double bg-grey-app self-center mx-auto hidden" onClick={rebithAll}>rebith</button>
         </div>
     );
 }

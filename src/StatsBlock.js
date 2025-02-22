@@ -6,7 +6,7 @@ const levelFive = 5;
 const levelTen = 10;
 const moreTen = 15;
 
-function StatsBlock({ level, click, achive, counter, counterUp, clickChange }) {
+function StatsBlock({ level, click, achive, counter, counterUp, clickChange, rebith}) {
     return (
         <div className="container-stats w-full pl-[23px] flex flex-col text-white mb-[80px]">
             <div className="stats-block mb-[10px]">
@@ -18,6 +18,10 @@ function StatsBlock({ level, click, achive, counter, counterUp, clickChange }) {
             <div className="stats-block flex">
                 <span>Achivements: {achive.join(", ")}</span>
             </div>
+            <div className="stats-block flex">
+                <span>rebith's: {rebith}</span>
+            </div>
+            
             {
                 clickChange == 2 && (
                     <div className="mx-auto text-4xl">
